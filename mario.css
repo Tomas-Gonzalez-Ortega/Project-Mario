@@ -1,0 +1,133 @@
+       @font-face {
+           font-family: marioFont;
+           src: url('fonts/MarioBros.ttf');
+       }
+       
+       @font-face {
+           font-family: luigiFont;
+           src: url(fonts/emulogic.ttf);
+       }
+       
+       body {
+           background-color: #730000;
+       }
+       
+       #myNavbar {
+           font-family: marioFont;
+           font-size: 35px;
+           background-color: #990000;
+           color: #73FFFF;
+       }
+       
+       .navbar-inverse {
+           background-color: #990000;
+           color: #73FFFF;
+           margin-bottom: -3px;
+       }
+       
+       .navbar-text {
+           font-family: marioFont;
+           font-size: 14px;
+           background-color: #990000;
+           color: #73FFFF;
+       }
+       
+       .navbar-inverse .navbar-text {
+           color: #73FFFF;
+       }
+       
+       .navbar-inverse .navbar-nav > li > a {
+           color: #73FFFF;
+       }
+       
+       .navbar-inverse .navbar-toggle:focus,
+       .navbar-inverse .navbar-toggle:hover {
+           background-color: #45E6E6;
+       }
+       
+       .img-responsive {
+           margin-top: -19px;
+           border: 1px;
+           border: solid;
+           border-radius: 2px;
+           border-color: #101010;
+       }
+       
+       jumbotron p {
+           font-size: 13px;
+       }
+       
+       .well {
+           font-size: 13px;
+       }
+       
+       .jumbotron well tab-pane fade in active {
+           font-size: 13px;
+       }
+       
+       #intro_display {
+           font-family: luigiFont;
+           font-size: 13px;
+           background-color: #BF1D1D;
+           color: #73FFFF;
+           padding-bottom: 45px;
+           padding-top: 45px;
+           border: 1px;
+           margin-top: -2px;
+           border: solid;
+           border-radius: 2px;
+           border-color: #101010;
+       }
+       
+       #map_display {
+           font-family: luigiFont;
+           font-size: 13px;
+           background-color: #BF1D1D;
+           color: #73FFFF;
+           padding-bottom: 45px;
+           padding-top: 45px;
+           border: 1px;
+           margin-top: -2px;
+           border: solid;
+           border-radius: 2px;
+           border-color: #101010;
+           z-index: 1;
+       }
+       
+       #history_display, #high_scores {
+           font-family: luigiFont;
+           font-size: 13px;
+           background-color: #BF1D1D;
+           color: #73FFFF;
+           padding-bottom: 45px;
+           padding-top: 45px;
+           border: 1px;
+           margin-top: -2px;
+           border: solid;
+           border-radius: 2px;
+           border-color: #101010;
+       }
+
+
+       
+       #start {
+           color: #1DBFBF;
+           margin-bottom: 10px;
+       }
+       
+       .location_change {
+           background-color: white;
+       }
+       
+       .location_not_change {}
+       
+       .panel-footer {
+           background-color: #990000;
+           color: #73FFFF;
+           text-align: center;
+           font-family: luigiFont;
+           font-size: 11px;
+           border: solid;
+           border-radius: 2px;
+           border-color: #101010;
+       }

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset = "utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<script src="audio/howler.js-master/howler.js" defer ></script>
+<script src="mario.js" defer ></script>
+
+<style>
+
+html, body {
+    margin: 0;
+    padding: 0;
+    background-color: grey;
+}
+#timer{
+	font-size : 100%;
+	font-size: 40px;
+    margin: 20px auto;	
+	text-align: center;
+    vertical-align: middle;
+}
+
+#timer span {
+	border: solid 1px black;
+	display: inline-block;
+	margin: 0 2px;
+	height: 40px;
+	width: 40px;
+    vertical-align: middle;
+}
+canvas {
+    display: block;
+    margin: auto;
+
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.wrapper {
+    width: 512px;
+    margin: 0 auto;
+    margin-top: 2em;
+}
+
+
+#score {
+    float: right;
+    color: white;
+    font-size: 2em;
+}
+#health {
+    float: left;
+    color: white;
+    font-size: 2em;
+}
+#scores {
+    float: right;
+    color: white;
+    font-size: 2em;
+}
+.key {
+    color: #aaffdd;
+}
+
+#game-over,#winner, #game-over-overlay {
+    margin: auto;
+    width: 512px;
+    height: 480px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    display: none;
+}
+
+#game-over-overlay {
+    background-color: black;
+    opacity: .5;
+}
+
+#game-over {
+    height: 200px;
+    text-align: center;
+    color: white;
+}
+
+#game-over h1 {
+    font-size: 3em;
+    font-family: sans-serif;
+}
+#winner {
+    height: 200px;
+    text-align: center;
+    color: white;
+}
+
+#winner h1 {
+    font-size: 3em;
+    font-family: sans-serif;
+}
+#game-over button, #winner button {
+    font-size: 1.5em;
+}
+ #result,
+        thead,
+        th,
+        tbody {
+            background-color: darkgray;
+            color: white;
+        }
+        
+        button {
+            color: darkgray;
+        }
+  </style>
+	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script>
+        function ajaxWay() {
+
+            // syntax: $.post(URL,data,callback);
+            $.post("score.php", {
+                fname: $("#fn").val(),
+                score: $("#score").text()
+            }, display);
+
+        }
+
+        function display(dataFromtheServer) {
+           $("#result tbody > tr").remove();
+                $("#result tbody").append(fname);
+			
+        }
+    </script>
+</head>
+<body onload="startGame()">
+ <div class="wrapper">
+	<p>Firstname:
+            <input type="text" id="fn">
+        </p>
+        <button onclick="ajaxWay()">High Score</button>
+        <p></p>
+       <table id="result">
+            <tbody>
+            </tbody>
+        </table>
+ <div id="game-over-overlay">
+    </div>
+	<div id="winner">
+	<h1>Congratulations!!! You won the game....!! </h1>
+      <button id="play-again" onclick="myFunction()" >Play Again</button>
+    </div>
+    <div id="game-over">
+      <h1>GAME OVER</h1>
+      <button id="play-again" onclick="myFunction()" >Play Again</button>
+    </div>
+     <div id="timer">
+						<span>0</span><span>0</span>:<span>0</span><span>0</span>
+					</div> 
+      </div>
+		<div id="score"></div>
+		<div id="health"></div>
+      <div id="scores">Score:</div>
+      
+
+    </div>
+</body>
+</html>
+

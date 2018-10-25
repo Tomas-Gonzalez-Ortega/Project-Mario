@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="Sandeep Kaur Tomas Gonzalez Ortega Harpreet Singh" content="CPSC 2030 Project Mario">
+    <title>CPSC 2030 Project Mario</title>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="mario.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="navbar navbar-inverse">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <p class="navbar-text">MARIO PROJECT</p>
+                    </div>
+                    <div class="collapse navbar-collapse" id="myNavbar">
+                        <ul class="nav navbar-nav nav-pills">
+                            <li class="small active"><a data-toggle="pill" href=#intro_display>Home</a></li>
+                            <li id="status_display" class="location_not_change small"><a data-toggle="pill" href="#map_display">Game</a>
+                            </li>
+                            <li class="small"><a data-toggle="pill" href="#history_display">About</a></li>
+                            <li class="small"><a data-toggle="pill" href="#high_scores">High Scores</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <img src="images/mario.jpg" class="img-responsive" alt="banner">
+
+
+            <div class="tab-content">
+                <div class="well tab-pane fade in active" id="intro_display">
+                    <p>
+                        This Mario project corresponds to the group milestone asked to perform during CPSCP 2030 Web Development II, class dicted by our beloved instructor Stephen Chiong. With his guidance we have achieved basics to submerge into the video game developing world with some of the main features: Coordinates, gravity, interface, response, sound and design.
+                    </p>
+                    <p>
+                        Our job mostly consisted in creating a group representing most of the areas of a web development team, experiencing the pros and cons of working as a teamplayer, dividing the duties, setting deadlines and trying to solve issues within the schedule to keep the same flow these companies have to deal with on a daily basis. Sandeep and Harpreet spent several days trying to solve and debug programming aspects of the model and the API. While Tomas was mostly focused on the design, the web page and the sound of the prototype.
+                    </p>
+                </div>
+
+                <div class="well tab-pane fade" id="map_display">
+                    <input id="start" type=button onClick="window.open('index.html')" value='START'>
+                    <p>
+                        Instructions:
+                        <br/> Use &uarr; to Jump
+                        <br/> Use &larr; to move left
+                        <br/> Use &rarr; to move right
+                        <br/> Use the space bar to shot fireballs
+                    </p>
+                    <br/>
+                    <p> Our group wants to thank: Our instructor Stephen Chiong, Goldfire and his impressive Howler.js, Stackoverflow, Codepen, Bootstrap, Mozilla game development, AJAX, WC3, Sounds-resource and specially our families for trusting in our talent and for all their support.</p>
+                </div>
+
+                <div class="well tab-pane fade" id="history_display">
+                    <p>If you are interested in contacting the creators of <strong>Mario project<sup>&#169;</sup></strong>, the Instructor or Langara College , please refer to the following e-mails and phone numbers:</p>
+                    <p>&#9758; Langara College 100 West 49th Avenue, Vancouver, BC Canada V5Y 2Z6 Email geninfo@langara.bc.ca Information Line Tel: 604.323.5686</p>
+                    <p>&#9758; Computing Science and Information Systems Department Student Coordinator Gladys Monagan Tel: 604.323.5859 Office: B246d Email: csis@langara.bc.ca</p>
+                    <p>&#9758; Sandeep Kaur - Email : sandeepsidhu685@gmail.com</p>
+                    <p>&#9758; Tomas Gonzalez Ortega - Email : tgonzalez00@mylangara.bc.ca Tel: 604.807.5094</p>
+                    <p>&#9758; Harpreet Singh- Email : harpreet97.hh@gmail.com Tel: 778.237.7254</p>
+                </div>
+                
+                 <div class="well tab-pane fade" id="high_scores">
+                    <p>Rank, Score, Name</p>
+            
+                </div>
+            </div>
+            <footer class="panel-footer">CPSC 2030 Web Development II - Sandeep Kaur Tomas Gonzalez Ortega Harpreet Singh - Langara College 2016</footer>
+        </div>
+    </div>
+</body>
+
+</html>
