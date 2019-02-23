@@ -13,13 +13,14 @@ var background;
 var lastFire = Date.now();
 var bullets = [];
 var fire = [];
-var dx = 4; 
+var dx = 4;
 var FPS =30;
 var health = 0;
 var myScore;
 var stars = [];
 var bricks =[];
 var cmmTID;
+var soundBackground;
 
 
 
@@ -28,8 +29,8 @@ function startGame(){
 	myGameArea.start();
 	newAnimation();
 	startAnimation();
-	
-	 var sound = new Howl({
+
+	soundBackground = new Howl({
         urls: ['sound/SuperMario.ogg'],
         loop: true,
         volume: 0.3,
@@ -51,6 +52,7 @@ var myGameArea = {
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
     },
     stop : function() {
+		console.log('stop', this, this.interval);
         clearInterval(this.interval);
     }
 }
@@ -122,9 +124,9 @@ function enemyPosition(something) {
 		if(something.x == 592){
 		   goingRight = false;}
         }
-	
+
 }
-		
+
 
 //
 function updateGameArea() {
@@ -137,7 +139,7 @@ function updateGameArea() {
 	}
 	for(var i=0; i<bricks.length; i++){
 	    bricks[i].update();
-	}	
+	}
 	for(var j=0; j<gameEnemy.length; j++){
 		gameEnemy[j].update();
 		enemyPosition(gameEnemy[j]);
@@ -151,7 +153,8 @@ function updateGameArea() {
                 var sound = new Howl({
                     urls: ['sound/Die.wav']
                 }).play();
-				}	
+				soundBackground.stop();
+				}
 			}
 	for(var j=0; j<gameEnemies.length; j++){
 		gameEnemies[j].newPos1();
@@ -166,7 +169,8 @@ function updateGameArea() {
                 var sound = new Howl({
                     urls: ['sound/Die.wav']
                 }).play();
-				}	
+					soundBackground.stop();
+				}
 		}
 	for(var j=0; j<realEnemy.length; j++){
 		realEnemy[j].newPos2();
@@ -181,7 +185,8 @@ function updateGameArea() {
                 var sound = new Howl({
                     urls: ['sound/Die.wav']
                 }).play();
-				}	
+					soundBackground.stop();
+				}
 		}
 	for(var i=0; i<fire.length; i++){
 		fire[i].update();
@@ -194,7 +199,7 @@ function updateGameArea() {
 				score = score+2;
 			}
 		}
-	
+
 	for(var i=0; i<stars.length; i++){
 		stars[i].update();
 			if(stars[i].x < myGamePiece.x + myGamePiece.width &&
@@ -206,7 +211,7 @@ function updateGameArea() {
                 var sound = new Howl({
                     urls: ['sound/Coin.wav']
                 }).play();
-				score++;	
+				score++;
 			}
 		}
 	for(var i=0; i<realstar.length; i++){
@@ -223,7 +228,8 @@ function updateGameArea() {
                 var sound = new Howl({
                     urls: ['sound/Coin.wav']
                 }).play();
-				score = score+50;	
+				soundBackground.stop();
+				score = score+50;
 			}
 		}
 	 // Update all the bullets
@@ -269,14 +275,14 @@ function updateGameArea() {
                     urls: ['sound/Kick.wav']
                 }).play();
 					}
-			}	
+			}
         // Remove the bullet if it goes offscreen
 			if(bullets[i].y < 0 || bullets[i].y >600 ||bullets[i].x > 1350) {
 				bullets.splice(i, 1);
 				i--;
-				}		
+				}
     }
-	if(stage==0 && myGamePiece.x >= 1280){	
+	if(stage==0 && myGamePiece.x >= 1280){
 		stage2();
 		console.log("stage2")
 		stage++;
@@ -328,7 +334,7 @@ function update(){
         }
     }
    if (keys[32]&&!isGameOver && Date.now() - lastFire > 100){
-		//space 
+		//space
 		console.log("mario shoots");
         var sound = new Howl({
             urls: ['sound/Fire Ball.wav']
@@ -336,17 +342,17 @@ function update(){
 		var x = myGamePiece.x + myGamePiece.width / 2;
         var y = myGamePiece.y + myGamePiece.height / 2;
 		bullets.push(new component (40,40,'images/bullets.png',x,y, 'image'));
-        lastFire = Date.now();	
+        lastFire = Date.now();
     }
     myGamePiece.velX *= friction;
    if (myGamePiece.jumping == true){
 		myGamePiece.velY += gravity;
 	}
-    
+
     if(myGamePiece.jumping ==false){
 		myGamePiece.grounded = true;
 	}
-    for (var i = 0; i < gameObstacles.length; i++) {       
+    for (var i = 0; i < gameObstacles.length; i++) {
         var dir = colCheck(myGamePiece, gameObstacles[i]);
 	}
 
@@ -364,11 +370,11 @@ function update(){
 			myGamePiece.jumping = true;
 	   console.log("hch:" +1)
 	   }
-    
+
     if(myGamePiece.grounded){
          myGamePiece.velY = 0;
     }
-    
+
     myGamePiece.x += myGamePiece.velX;
     myGamePiece.y += myGamePiece.velY;
 	if (myGamePiece.x >= width-myGamePiece.width) {
@@ -376,7 +382,7 @@ function update(){
     } else if (myGamePiece.x <= 0) {
         myGamePiece.x = 0;
     }
-  
+
     if(myGamePiece.y >= height-myGamePiece.height){
         myGamePiece.y = height - myGamePiece.height ;
         myGamePiece.jumping = false;
@@ -402,7 +408,7 @@ function colCheck(shapeA, shapeB) {
             if (vY > 0) {
                 colDir = "t";
                 shapeA.y += oY;
-				
+
             } else {
                 colDir = "b";
                 shapeA.y -= oY;
@@ -413,7 +419,7 @@ function colCheck(shapeA, shapeB) {
             if (vX > 0) {
                 colDir = "l";
                 shapeA.x += oX;
-				
+
             } else {
                 colDir = "r";
                 shapeA.x -= oX;
@@ -436,7 +442,7 @@ document.body.addEventListener("keyup", function (e) {
 window.addEventListener("load", function () {
     update();
 });
-   
+
 (function() {
     var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
     window.requestAnimationFrame = requestAnimationFrame;
@@ -455,7 +461,7 @@ function winner() {
     isGameOver = true;
 	var sound = new Howl({
         urls: ['sound/Stage clear.wav'],
-        loop: true,
+        loop: false,
         volume: 0.3,
     }).play();
 	myGameArea.stop();
@@ -484,8 +490,8 @@ function stage1() {
 	gameEnemies = [];
 	realEnemy = [];
 	}
-	
-	
+
+
 var stage2 = function(){
 	stars = [new component(40, 40, "images/star.png",400,100 , "image"),new component(40, 40, "images/star.png",450,100 , "image"),new component(40, 40, "images/star.png",500,100 , "image"),new component(40, 40, "images/star.png",550,100 , "image"),new component(40, 40, "images/star.png",600,100 , "image"),new component(40, 40, "images/star.png",550,50 , "image"),new component(40, 40, "images/star.png",550,150 , "image")];
 	bricks = [];
@@ -500,7 +506,7 @@ var stage2 = function(){
 var stage3 = function(){
 	myGamePiece.x = 10;
 	stars = [new component(40, 40, "images/star.png",400,360 , "image"),new component(40, 40, "images/star.png",450,360 , "image"),new component(40, 40, "images/star.png",500,360 , "image"),new component(40, 40, "images/star.png",550,360 , "image"),new component(40, 40, "images/star.png",600,210 , "image"),new component(40, 40, "images/star.png",650,210 , "image"),new component(40, 40, "images/star.png",700,210 , "image"),new component(40, 40, "images/star.png",750,210 , "image"),new component(40, 40, "images/star.png",800,60 , "image"),new component(40, 40, "images/star.png",850,60 , "image"),new component(40, 40, "images/star.png",900,60 , "image"),new component(40, 40, "images/star.png",950,60 , "image")];
-	gameEnemy = []; 
+	gameEnemy = [];
 	gameEnemies = [new component(50, 70, "images/enemy.png", 350, 350, "image"),new component(50, 70, "images/enemy.png", 550, 200, "image"),new component(50, 70, "images/enemy.png", 750, 50, "image")];
 	realEnemy = [new component(50, 70, "images/enemy.png", 1050, 50, "image")]
 	realstar = [new component(70, 70, "images/realstar.png",1100,50 , "image")];
@@ -521,19 +527,19 @@ function handleReset(event) {
 // interactive elements of the view.
 var view = {
 	timerBoxes : document.querySelectorAll('#timer span'),
-	
+
 	displayTime : function( time ) {
 		// Assumes time is in seconds
 		var minutes = Math.floor(time/60);
-		var decaseconds  = Math.floor((time%60)/10); 		
+		var decaseconds  = Math.floor((time%60)/10);
 		var seconds      = Math.floor( (time%60)%10 );
 		// most significant digit
 		this.timerBoxes[1].innerHTML =  minutes;
-		this.timerBoxes[2].innerHTML = decaseconds; 
-		this.timerBoxes[3].innerHTML = seconds; 
+		this.timerBoxes[2].innerHTML = decaseconds;
+		this.timerBoxes[3].innerHTML = seconds;
 	},
-	
-		
+
+
 	}
 
 
@@ -568,15 +574,14 @@ function stopAnimation( end ) {
 // Finally... the big moment - our animation algorithm!! TA-DA...
 function animate() {
 	timeLeft--;
-	
+
 	if (timeLeft <= 0) {  // Important!  Stop the timer when it gets to 0
 		timeLeft = 0;
 		stopAnimation( true );
 		gameOver();
 	}
-	
+
 	view.displayTime( timeLeft );
 }
 if (timeLeft < 8)
     alert("adf");
-
